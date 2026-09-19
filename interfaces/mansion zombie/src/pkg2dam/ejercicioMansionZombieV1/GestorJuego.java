@@ -195,7 +195,7 @@ public void curarse(superviviente s, juego j) {
             puntosVida = s.getPuntosVida();
         }
 
-        s.setPuntosVidaActuales(puntosVida);
+        s.setPuntosVidaActuales(puntosVida);                vv
         s.setBotiquinLleva(false);
 
         System.out.println("se ha curado 4 puntos");
@@ -208,8 +208,7 @@ public void curarse(superviviente s, juego j) {
         int busquedas = j.getNumIntentos();
         int numHabitacion = j.getHabitacionActual();
         
-        if(numHabitacion < j.getNumMaxHabitaciones() ) {
-            
+        if(numHabitacion < j.getNumMaxHabi              
             busquedas = 3;
             j.setNumIntentos(busquedas);
             j.setNumeroZombies(1);
