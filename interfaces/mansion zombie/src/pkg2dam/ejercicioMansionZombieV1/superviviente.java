@@ -15,7 +15,7 @@ public class superviviente {
     private int cantidadArmas;
     private int cantidadProteccion;
 
-    public superviviente(int puntosVida, int puntosVidaActuales, int puntosAtaque, boolean botiquinLleva, int cantidadArmas, int cantidadProteccion) {
+    public superviviente() {
         this.puntosVida = 20;
         this.puntosVidaActuales = 20;
         this.puntosAtaque = 4;

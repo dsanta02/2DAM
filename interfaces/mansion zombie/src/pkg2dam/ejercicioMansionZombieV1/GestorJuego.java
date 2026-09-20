@@ -18,16 +18,38 @@ public class GestorJuego {
         this.juego = juego;
     }
 
+    
+    
+
 public void turno() {
+    
 
     int opcion;
 
     do {
-
-        System.out.println("1. combatir");
-        System.out.println("2. buscar");
+        
+  
+        if (juego.getNumeroZombies() > 0) {
+            System.out.println("PV:" + Superviviente.getPuntosVidaActuales() +
+                    " armas:" + Superviviente.getCantidadArmas() +
+                    " proteccion:" + Superviviente.getCantidadProteccion());
+            System.out.println("la habitacion " + juego.getHabitacionActual() +
+                    " contiene " + juego.getNumeroZombies() + " zombies");
+            System.out.println("elija una de las siguientes acciones:");
+            System.out.println("1. combatir");   
+        }
+        if(juego.getNumeroZombies() ==  0){
+            
+        System.out.println("2. buscar por la habitacion (" + juego.getNumIntentos() + ")");
         System.out.println("3. curarse");
-        System.out.println("4. avanzar");
+        if (juego.getHabitacionActual() == juego.getNumMaxHabitaciones()) {
+            System.out.println("4. salir de la mansion");
+        } else {
+            System.out.println("4. avanzar a la otra habitacion");
+        }
+            
+        }
+
 
         opcion = sc.nextInt();
 
@@ -35,7 +57,7 @@ public void turno() {
 
             if (juego.getNumeroZombies() > 0) {
 
-                Zombie z = new Zombie(juego);
+                 Zombie z = new Zombie(juego);
 
                 combate(z);
 
@@ -76,31 +98,42 @@ public void turno() {
 
                 avanzar(juego);
 
-            } else {
-
+            } else{
+                
                 System.out.println("No puedes avanzar, hay zombies");
             }
         }
 
-    } while (opcion != 4);
+    } while (Superviviente.getPuntosVidaActuales() > 0 && juego.getHabitacionActual() <= juego.getNumMaxHabitaciones());
 }
 
     public void combate(Zombie z) {
-
+        
+        int ronda = 1;
+        System.out.println("el zombie tiene " + z.puntosAtaque + " puntos de ataque");
+        System.out.println("el zombie tiene " + z.puntosVida + " puntos de vida");
+        System.out.println("--RONDA " + ronda);
 
     while (z.getPuntosVida() > 0 && Superviviente.getPuntosVidaActuales()> 0) {
 
         int tiroDado = (int) (Math.random() * Superviviente.getPuntosAtaque()) + 1;
 
         int ataqueSuperviviente = tiroDado + Superviviente.getCantidadArmas();
+        
+
 
         System.out.println("El superviviente ataca con " + ataqueSuperviviente);
+        System.out.println("el zombie ataca con valor " + z.puntosAtaque);
+        System.out.println("--RONDA " + ronda);
+        System.out.println("el superviviente ataca con " + Superviviente.getPuntosAtaque());
+        
+        
 
         z.setPuntosVida(z.getPuntosVida() - ataqueSuperviviente);
 
         if (z.getPuntosVida() <= 0) {
 
-            System.out.println("Zombie muerto");
+            System.out.println("has eliminado al zombie....");
 
         } else {
 
@@ -124,6 +157,8 @@ public void turno() {
             if (Superviviente.getPuntosVidaActuales()<= 0) {
                 System.out.println("El superviviente ha muerto");
             }
+            
+            ronda ++;
         }
     }
 }
@@ -135,6 +170,8 @@ public void turno() {
         int numIntentos = j.getNumIntentos() - 1;
         j.setNumIntentos(numIntentos);
         int proteccion = s.getCantidadProteccion();
+        
+        System.out.println("OPCION 2:");
         
         if (dado <=100 && dado >=96) {
             
@@ -159,21 +196,21 @@ public void turno() {
             
         } else {
             
-            System.out.println("vaya!!, ha hecho ruido...");
-            System.out.println("tire otra vez los dados");
+
             int dado2 = (int) (Math.random()* 100) + 1;
                     
             if (dado2 >= 1 && dado2 <= 40) {
-                System.out.println("no ha pasado nada.....");
+            System.out.println("vaya!!, ha hecho ruido...");
+            System.out.println("¡cuidado!");
+            System.out.println("... por suerte nadie te ha escuchado al otro lado"
+                    + "esta vez....");
             } else if(dado2 >= 41 && dado2 <= 80) {
+                j.setNumeroZombies(j.getNumeroZombies() + 1);
                 System.out.println("ha aperecido un zombie!!!");
-              Zombie z1 = new Zombie(j);
-              combate(z1);
+
             } else {
-                Zombie z2 = new Zombie(j);
-                combate(z2);
-                Zombie z3 = new Zombie(j);
-                combate(z3);
+                j.setNumeroZombies(j.getNumeroZombies() + 2);
+                System.out.println("vaya han aparecido 2 ZOMBIEEES!!!");
             }
         }
         
@@ -195,7 +232,7 @@ public void curarse(superviviente s, juego j) {
             puntosVida = s.getPuntosVida();
         }
 
-        s.setPuntosVidaActuales(puntosVida);                vv
+        s.setPuntosVidaActuales(puntosVida);                
         s.setBotiquinLleva(false);
 
         System.out.println("se ha curado 4 puntos");
@@ -208,7 +245,7 @@ public void curarse(superviviente s, juego j) {
         int busquedas = j.getNumIntentos();
         int numHabitacion = j.getHabitacionActual();
         
-        if(numHabitacion < j.getNumMaxHabi              
+        if(numHabitacion < j.getNumMaxHabitaciones())             
             busquedas = 3;
             j.setNumIntentos(busquedas);
             j.setNumeroZombies(1);
@@ -220,7 +257,7 @@ public void curarse(superviviente s, juego j) {
             
     }
            
-}
+
 
     
 

@@ -12,7 +12,7 @@ public class juego {
     private int habitacionActual;
     private int numeroZombies;
 
-    public juego(int numMaxHabitaciones, int numIntentos, int habitacionActual, int numeroZombies) {
+    public juego(int numMaxHabitaciones) {
         
         this.numMaxHabitaciones = numMaxHabitaciones;
         this.numIntentos = 3;

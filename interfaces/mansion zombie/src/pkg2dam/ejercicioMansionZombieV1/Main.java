@@ -12,24 +12,24 @@ public class Main {
 
     public static void main(String[] args) {
         
-        superviviente s = new superviviente(20, 20, 4, false, 0, 0);
+        superviviente s = new superviviente();
         juego j = null;
         
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("eliga una opcion: ");
-        System.out.println("1. Facil");
-        System.out.println("2. Dificil");
+        System.out.println("BIENVENIDO A LA MANSIÓN ZOMBIE. ELIGE DIFICULTAD: ");
+        System.out.println("1. FÁCIL (5 HABITACIONES)");
+        System.out.println("2. DIFÍCIL (10 HABITACIONES");
         int opcion = sc.nextInt();
         
         if (opcion == 1) {
             
-            j = new juegoFacil(5, 3, 1, 1);
+            j = new juegoFacil();
             
             
         } else if(opcion == 2) {
             
-            j = new juegoDificil(10, 3, 1, 1);
+            j = new juegoDificil();
             
         }else {
             

@@ -7,8 +7,8 @@ package pkg2dam.ejercicioMansionZombieV1;
 
 public class juegoDificil extends juego{
     
-    public juegoDificil(int numMaxHabitaciones, int numIntentos, int habitacionActual, int numeroZombies) {
-        super(10, numIntentos, habitacionActual, numeroZombies);
+    public juegoDificil() {
+        super(10);
     }
     
     
