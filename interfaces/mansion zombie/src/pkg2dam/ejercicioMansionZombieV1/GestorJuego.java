@@ -6,7 +6,7 @@ package pkg2dam.ejercicioMansionZombieV1;
 
 import java.util.Scanner;
 
-public class GestorJuego {
+public class GestorJuego implements accionesJugador{
 
     Scanner sc;
     superviviente Superviviente;
@@ -20,7 +20,7 @@ public class GestorJuego {
 
     
     
-
+@Override
     public void turno() {
     
 
@@ -108,7 +108,7 @@ public class GestorJuego {
 
     } while (Superviviente.getPuntosVidaActuales() > 0 && juego.getHabitacionActual() <= juego.getNumMaxHabitaciones());
 }
-
+@Override
     public void combate(Zombie z) {
         
         int ronda = 1;
@@ -166,7 +166,7 @@ public class GestorJuego {
         }
     }
 }
-    
+@Override 
     public void buscarHabitacion () {
         
         int dado = (int) (Math.random()* 100) + 1;
@@ -223,7 +223,7 @@ public class GestorJuego {
         }
         
     }
-
+@Override
     public void curarse() {
 
     int puntosVida = Superviviente.getPuntosVidaActuales();
@@ -245,6 +245,7 @@ public class GestorJuego {
         System.out.println("no puede curarse, NO TIENE BOTIQUIN!!!");
     }
 }
+@Override
     public void avanzar( ) {
         
         int busquedas = juego.getNumIntentos();
